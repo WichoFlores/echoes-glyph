@@ -1,0 +1,110 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`snapshots > echoes style v1 snapshots 1`] = `
+[
+  "<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="echoes-bg-206744067" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F7F3FF" />
+      <stop offset="100%" stop-color="#EAF6FF" />
+    </linearGradient>
+
+    <radialGradient id="echoes-glow-870623085" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#FF8FB1" stop-opacity="0.35" />
+      <stop offset="60%" stop-color="#FF8FB1" stop-opacity="0.12" />
+      <stop offset="100%" stop-color="#FF8FB1" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <rect width="128" height="128" rx="28.16" fill="url(#echoes-bg-206744067)" />
+  <circle cx="63.22" cy="60.43" r="31.77" fill="url(#echoes-glow-870623085)" />
+  <circle cx="63.22" cy="60.43" r="23.36" fill="none" stroke="#6B6DEB" stroke-opacity="0.361" stroke-width="10.94" />
+  <circle cx="63.22" cy="60.43" r="36.92" fill="none" stroke="#6B6DEB" stroke-opacity="0.331" stroke-width="10.94" />
+  <circle cx="37.45" cy="95.73" r="6.27" fill="#FF8FB1" fill-opacity="0.65" />
+</svg>",
+  "<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="echoes-bg-464993757" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F7F3FF" />
+      <stop offset="100%" stop-color="#EAF6FF" />
+    </linearGradient>
+
+    <radialGradient id="echoes-glow-988059430" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#FF8FB1" stop-opacity="0.35" />
+      <stop offset="60%" stop-color="#FF8FB1" stop-opacity="0.12" />
+      <stop offset="100%" stop-color="#FF8FB1" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <rect width="128" height="128" rx="28.16" fill="url(#echoes-bg-464993757)" />
+  <circle cx="66.49" cy="59.5" r="35.62" fill="url(#echoes-glow-988059430)" />
+  <circle cx="66.49" cy="59.5" r="28.13" fill="none" stroke="#6B6DEB" stroke-opacity="0.269" stroke-width="7.95" />
+  <circle cx="66.49" cy="59.5" r="39.08" fill="none" stroke="#6B6DEB" stroke-opacity="0.239" stroke-width="7.95" />
+  <circle cx="66.49" cy="59.5" r="50.02" fill="none" stroke="#6B6DEB" stroke-opacity="0.209" stroke-width="7.95" />
+  <circle cx="24.91" cy="22.76" r="5.46" fill="#FF8FB1" fill-opacity="0.65" />
+</svg>",
+  "<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="echoes-bg-654775314" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FFF0F6" />
+      <stop offset="100%" stop-color="#F3FFFE" />
+    </linearGradient>
+
+    <radialGradient id="echoes-glow-395707621" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#2DD4BF" stop-opacity="0.35" />
+      <stop offset="60%" stop-color="#2DD4BF" stop-opacity="0.12" />
+      <stop offset="100%" stop-color="#2DD4BF" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <rect width="128" height="128" rx="28.16" fill="url(#echoes-bg-654775314)" />
+  <circle cx="63.56" cy="66.89" r="34.84" fill="url(#echoes-glow-395707621)" />
+  <circle cx="63.56" cy="66.89" r="23.42" fill="none" stroke="#8A5CF6" stroke-opacity="0.264" stroke-width="11.12" />
+  <circle cx="63.56" cy="66.89" r="34.94" fill="none" stroke="#8A5CF6" stroke-opacity="0.234" stroke-width="11.12" />
+  <circle cx="63.56" cy="66.89" r="46.45" fill="none" stroke="#8A5CF6" stroke-opacity="0.204" stroke-width="11.12" />
+  <circle cx="63.56" cy="66.89" r="57.97" fill="none" stroke="#8A5CF6" stroke-opacity="0.174" stroke-width="11.12" />
+  <circle cx="0.48" cy="57.8" r="4.92" fill="#2DD4BF" fill-opacity="0.65" />
+</svg>",
+  "<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="echoes-bg-304518332" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F2FFF6" />
+      <stop offset="100%" stop-color="#F2F7FF" />
+    </linearGradient>
+
+    <radialGradient id="echoes-glow-367600459" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#7B61FF" stop-opacity="0.35" />
+      <stop offset="60%" stop-color="#7B61FF" stop-opacity="0.12" />
+      <stop offset="100%" stop-color="#7B61FF" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <rect width="128" height="128" rx="28.16" fill="url(#echoes-bg-304518332)" />
+  <circle cx="59.56" cy="68.1" r="29.95" fill="url(#echoes-glow-367600459)" />
+  <circle cx="59.56" cy="68.1" r="28.23" fill="none" stroke="#3A7D6B" stroke-opacity="0.394" stroke-width="8.58" />
+  <circle cx="59.56" cy="68.1" r="39.73" fill="none" stroke="#3A7D6B" stroke-opacity="0.364" stroke-width="8.58" />
+  <circle cx="59.56" cy="68.1" r="51.23" fill="none" stroke="#3A7D6B" stroke-opacity="0.334" stroke-width="8.58" />
+  <circle cx="111.82" cy="45.41" r="6.1" fill="#7B61FF" fill-opacity="0.65" />
+</svg>",
+  "<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="echoes-bg-527988650" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FFF0F6" />
+      <stop offset="100%" stop-color="#F3FFFE" />
+    </linearGradient>
+
+    <radialGradient id="echoes-glow-21643418" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#2DD4BF" stop-opacity="0.35" />
+      <stop offset="60%" stop-color="#2DD4BF" stop-opacity="0.12" />
+      <stop offset="100%" stop-color="#2DD4BF" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <rect width="128" height="128" rx="28.16" fill="url(#echoes-bg-527988650)" />
+  <circle cx="64.35" cy="65.71" r="33.8" fill="url(#echoes-glow-21643418)" />
+  <circle cx="64.35" cy="65.71" r="25.74" fill="none" stroke="#8A5CF6" stroke-opacity="0.258" stroke-width="10.09" />
+  <circle cx="64.35" cy="65.71" r="38.61" fill="none" stroke="#8A5CF6" stroke-opacity="0.228" stroke-width="10.09" />
+  <circle cx="104.93" cy="46.13" r="6.72" fill="#2DD4BF" fill-opacity="0.65" />
+</svg>",
+]
+`;
