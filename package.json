@@ -1,5 +1,5 @@
 {
-  "name": "@echoes/glyph",
+  "name": "@echoesfamily/glyph",
   "version": "0.1.0",
   "description": "Deterministic SVG avatar generator for Echoes",
   "type": "module",
