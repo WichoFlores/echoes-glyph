@@ -1,23 +1,68 @@
 import type { RenderContext } from "../registry";
 
+/* ------------------------------------------------------------------ *
+ *  Palette — derived from the Echoes design system
+ *
+ *  Primary:   Sage green  HSL(148, 34%, 62%)
+ *  Secondary: Warm peach  HSL(37, 61%, 93%)
+ *  Accent:    Lavender    HSL(262, 23%, 83%)
+ *
+ *  Each palette composes these hues into a layered, organic avatar
+ *  that mirrors the app's living background: soft color washes,
+ *  warm glows over a breathing gradient.
+ * ------------------------------------------------------------------ */
+
 type Palette = {
-  bg0: string;
-  bg1: string;
-  ring: string;
-  accent: string;
+  bg: string;
+  field: string;
+  orb0: string;
+  orb1: string;
+  glow: string;
 };
 
 const PALETTES: readonly Palette[] = [
   // Sage & lavender — the core Echoes pairing
-  { bg0: "#F4F8F5", bg1: "#F3F1F8", ring: "#7DB596", accent: "#C2B5D6" },
+  {
+    bg: "#E8F0EB", field: "#ECE8F2",
+    orb0: "#7DB596", orb1: "#C2B5D6",
+    glow: "#F2E6D0",
+  },
   // Warm peach & sage — approachable, human
-  { bg0: "#FBF5EE", bg1: "#F2F7F4", ring: "#8BAF9A", accent: "#D4AA82" },
+  {
+    bg: "#F2ECE2", field: "#E8F0EB",
+    orb0: "#D4AA82", orb1: "#85B498",
+    glow: "#F5DCC6",
+  },
   // Deep sage & dusty rose — grounded warmth
-  { bg0: "#F5F9F6", bg1: "#FBF3F0", ring: "#6B9E82", accent: "#C9918A" },
+  {
+    bg: "#E6EEE8", field: "#F0E8E8",
+    orb0: "#6B9E82", orb1: "#C9918A",
+    glow: "#F0E2CC",
+  },
   // Lavender & soft sage — thoughtful, creative
-  { bg0: "#F5F2F9", bg1: "#F0F6F2", ring: "#9B8EB5", accent: "#85B498" },
+  {
+    bg: "#EBE8F2", field: "#E8F0EB",
+    orb0: "#9B8EB5", orb1: "#85B498",
+    glow: "#D8CEE8",
+  },
   // Moss & warm taupe — earthy, quiet
-  { bg0: "#F7F4EF", bg1: "#F0F5F1", ring: "#7A9E85", accent: "#B5A08A" },
+  {
+    bg: "#ECE9E2", field: "#E8EEE8",
+    orb0: "#7A9E85", orb1: "#B5A08A",
+    glow: "#E6DAC8",
+  },
+  // Rose & lavender — tender vulnerability
+  {
+    bg: "#F0E8E8", field: "#EBE8F2",
+    orb0: "#C9918A", orb1: "#B5A8CC",
+    glow: "#EED8D2",
+  },
+  // Sage & amber — warm growth
+  {
+    bg: "#E8F0EB", field: "#EEEAD8",
+    orb0: "#7DB596", orb1: "#CCA860",
+    glow: "#F2E8CA",
+  },
 ];
 
 function clamp(n: number, lo: number, hi: number): number {
@@ -25,74 +70,76 @@ function clamp(n: number, lo: number, hi: number): number {
 }
 
 function round(n: number, digits = 2): number {
-  const p = Math.pow(10, digits);
+  const p = 10 ** digits;
   return Math.round(n * p) / p;
 }
 
 export function renderEchoes(ctx: RenderContext): string {
-  const { size, rng, version } = ctx;
-
-  if (version !== 1) {
-    // For now, only v1 exists. Later you can branch per version here.
-    // Keeping this explicit makes versioning intentional.
-  }
+  const { size, rng } = ctx;
+  const h = size / 2;
 
   const palette = rng.pick(PALETTES);
+  const uid = Math.floor(rng.next() * 1e9);
 
-  // Soft ring parameters
-  const ringCount = rng.int(2, 4);
-  const centerJitter = size * 0.08;
+  /* --- Background gradient (slightly off-center for organic feel) --- */
+  const bgCx = round(h + (rng.next() - 0.5) * size * 0.2);
+  const bgCy = round(h + (rng.next() - 0.5) * size * 0.2);
 
-  const cx = round(size / 2 + (rng.next() - 0.5) * centerJitter, 2);
-  const cy = round(size / 2 + (rng.next() - 0.5) * centerJitter, 2);
+  /* --- Organic orbs: 2-3 soft elliptical color washes --- */
+  const orbCount = rng.int(2, 3);
+  const orbColors = [palette.orb0, palette.orb1, palette.glow];
 
-  const baseRadius = size * 0.18 + rng.next() * (size * 0.06);
-  const gap = size * 0.08 + rng.next() * (size * 0.03);
-
-  const ringOpacity = round(clamp(0.22 + rng.next() * 0.18, 0.18, 0.45), 3);
-  const ringWidth = round(clamp(size * (0.06 + rng.next() * 0.03), size * 0.05, size * 0.1), 2);
-
-  // Accent dot
-  const dotAngle = rng.next() * Math.PI * 2;
-  const dotR = baseRadius + gap * (ringCount - 0.5);
-  const dx = round(cx + Math.cos(dotAngle) * dotR, 2);
-  const dy = round(cy + Math.sin(dotAngle) * dotR, 2);
-  const dotSize = round(clamp(size * (0.035 + rng.next() * 0.02), size * 0.03, size * 0.06), 2);
-
-  // A subtle “presence” glow at center
-  const glowRadius = round(clamp(size * (0.22 + rng.next() * 0.06), size * 0.2, size * 0.32), 2);
-
-  const rings = Array.from({ length: ringCount }).map((_, i) => {
-    const r = round(baseRadius + gap * i, 2);
-    const o = round(clamp(ringOpacity - i * 0.03, 0.08, 0.45), 3);
-    return `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${palette.ring}" stroke-opacity="${o}" stroke-width="${ringWidth}" />`;
+  const orbs = Array.from({ length: orbCount }, (_, i) => {
+    const color = orbColors[i];
+    const cx = round(size * (0.15 + rng.next() * 0.7));
+    const cy = round(size * (0.15 + rng.next() * 0.7));
+    const rx = round(size * (0.28 + rng.next() * 0.22));
+    const ry = round(size * (0.28 + rng.next() * 0.22));
+    const angle = round(rng.next() * 180);
+    const peakOpacity = round(clamp(0.4 + rng.next() * 0.2, 0.4, 0.6), 2);
+    return { color, cx, cy, rx, ry, angle, peakOpacity, id: `o${i}-${uid}` };
   });
 
-  // Use a deterministic id so multiple avatars on the same page do not clash
-  const gradId = `echoes-bg-${Math.floor(rng.next() * 1e9)}`;
-  const glowId = `echoes-glow-${Math.floor(rng.next() * 1e9)}`;
+  /* --- Warm glow (subtle center presence) --- */
+  const glowCx = round(h + (rng.next() - 0.5) * size * 0.25);
+  const glowCy = round(h + (rng.next() - 0.5) * size * 0.25);
+  const glowR = round(size * (0.22 + rng.next() * 0.12));
 
-  const svg = `
-<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">
-  <defs>
-    <linearGradient id="${gradId}" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="${palette.bg0}" />
-      <stop offset="100%" stop-color="${palette.bg1}" />
-    </linearGradient>
+  /* --- Assemble SVG --- */
+  const defs = [
+    `<radialGradient id="bg-${uid}" gradientUnits="userSpaceOnUse" cx="${bgCx}" cy="${bgCy}" r="${round(size * 0.75)}">`,
+    `  <stop offset="0%" stop-color="${palette.bg}" />`,
+    `  <stop offset="100%" stop-color="${palette.field}" />`,
+    `</radialGradient>`,
+    ...orbs.flatMap((o) => [
+      `<radialGradient id="${o.id}">`,
+      `  <stop offset="0%" stop-color="${o.color}" stop-opacity="${o.peakOpacity}" />`,
+      `  <stop offset="60%" stop-color="${o.color}" stop-opacity="${round(o.peakOpacity * 0.35, 2)}" />`,
+      `  <stop offset="100%" stop-color="${o.color}" stop-opacity="0" />`,
+      `</radialGradient>`,
+    ]),
+    `<radialGradient id="gl-${uid}">`,
+    `  <stop offset="0%" stop-color="${palette.glow}" stop-opacity="0.4" />`,
+    `  <stop offset="50%" stop-color="${palette.glow}" stop-opacity="0.15" />`,
+    `  <stop offset="100%" stop-color="${palette.glow}" stop-opacity="0" />`,
+    `</radialGradient>`,
+  ];
 
-    <radialGradient id="${glowId}" cx="50%" cy="50%" r="60%">
-      <stop offset="0%" stop-color="${palette.accent}" stop-opacity="0.35" />
-      <stop offset="60%" stop-color="${palette.accent}" stop-opacity="0.12" />
-      <stop offset="100%" stop-color="${palette.accent}" stop-opacity="0" />
-    </radialGradient>
-  </defs>
+  const elements = [
+    `<rect width="${size}" height="${size}" fill="url(#bg-${uid})" />`,
+    ...orbs.map(
+      (o) =>
+        `<ellipse cx="${o.cx}" cy="${o.cy}" rx="${o.rx}" ry="${o.ry}" fill="url(#${o.id})" transform="rotate(${o.angle} ${o.cx} ${o.cy})" />`,
+    ),
+    `<circle cx="${glowCx}" cy="${glowCy}" r="${glowR}" fill="url(#gl-${uid})" />`,
+  ];
 
-  <rect width="${size}" height="${size}" fill="url(#${gradId})" />
-  <circle cx="${cx}" cy="${cy}" r="${glowRadius}" fill="url(#${glowId})" />
-  ${rings.join("\n  ")}
-  <circle cx="${dx}" cy="${dy}" r="${dotSize}" fill="${palette.accent}" fill-opacity="0.65" />
-</svg>
-  `.trim();
-
-  return svg;
+  return [
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">`,
+    `  <defs>`,
+    ...defs.map((l) => `    ${l}`),
+    `  </defs>`,
+    ...elements.map((l) => `  ${l}`),
+    `</svg>`,
+  ].join("\n");
 }
