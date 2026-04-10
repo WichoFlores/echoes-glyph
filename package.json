@@ -1,6 +1,6 @@
 {
   "name": "@echoes/glyph",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Deterministic SVG avatar generator for Echoes",
   "type": "module",
   "main": "dist/index.js",
@@ -11,7 +11,9 @@
       "types": "./dist/index.d.ts"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsup src/index.ts --format esm --dts",
     "test": "vitest",
