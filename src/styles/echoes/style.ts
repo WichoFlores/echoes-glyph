@@ -8,10 +8,16 @@ type Palette = {
 };
 
 const PALETTES: readonly Palette[] = [
-  { bg0: "#F7F3FF", bg1: "#EAF6FF", ring: "#6B6DEB", accent: "#FF8FB1" },
-  { bg0: "#FFF7F0", bg1: "#F1FAFF", ring: "#4A7BEF", accent: "#FFB84D" },
-  { bg0: "#F2FFF6", bg1: "#F2F7FF", ring: "#3A7D6B", accent: "#7B61FF" },
-  { bg0: "#FFF0F6", bg1: "#F3FFFE", ring: "#8A5CF6", accent: "#2DD4BF" },
+  // Sage & lavender — the core Echoes pairing
+  { bg0: "#F4F8F5", bg1: "#F3F1F8", ring: "#7DB596", accent: "#C2B5D6" },
+  // Warm peach & sage — approachable, human
+  { bg0: "#FBF5EE", bg1: "#F2F7F4", ring: "#8BAF9A", accent: "#D4AA82" },
+  // Deep sage & dusty rose — grounded warmth
+  { bg0: "#F5F9F6", bg1: "#FBF3F0", ring: "#6B9E82", accent: "#C9918A" },
+  // Lavender & soft sage — thoughtful, creative
+  { bg0: "#F5F2F9", bg1: "#F0F6F2", ring: "#9B8EB5", accent: "#85B498" },
+  // Moss & warm taupe — earthy, quiet
+  { bg0: "#F7F4EF", bg1: "#F0F5F1", ring: "#7A9E85", accent: "#B5A08A" },
 ];
 
 function clamp(n: number, lo: number, hi: number): number {
